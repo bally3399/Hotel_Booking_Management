@@ -1,5 +1,6 @@
 .main {
     width: 100%;
+    overflow-x: hidden;
 }
 
 .heroContainer {
@@ -63,9 +64,8 @@
 
 .heroImage {
     width: 100%;
-    height: 450px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+    max-height: 500px;
 }
 
 .bookingSection {
@@ -73,9 +73,8 @@
     padding: 2rem;
     border-radius: 10px;
     margin: 2rem auto;
-    width: 90%;
+    width: 85%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-
 }
 
 .bookingGrid {
@@ -88,6 +87,8 @@
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .bookNowButton {
@@ -97,6 +98,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
 }
 
 .facilitiesSection {
@@ -156,19 +158,6 @@
     background-color: #fff;
 }
 
-.title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #4a3f35;
-    margin-bottom: 0.5rem;
-}
-
-.subtitle {
-    color: gray;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
-
 .roomsGrid {
     display: flex;
     flex-wrap: wrap;
@@ -215,4 +204,116 @@
     color: #333;
     padding: 1rem;
     text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .heroContainer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .buttonContainer {
+        justify-content: center;
+    }
+
+    .bookingGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .facilityGrid {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .heroContainer {
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .mainTitle {
+        font-size: 2rem;
+    }
+
+    .subTitle {
+        font-size: 1rem;
+    }
+
+    .bookingSection {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .bookingGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .inputField {
+        font-size: 14px;
+        padding: 0.6rem;
+    }
+
+    .facilityGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heroContainer {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .mainTitle {
+        font-size: 1.5rem;
+    }
+
+    .subTitle {
+        font-size: 0.8rem;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bookNow {
+        width: 100%;
+        text-align: center;
+    }
+
+    .bookingSection {
+        width: 85%;
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .bookingGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .inputField {
+        font-size: 13px;
+        padding: 0.5rem;
+    }
+
+    .bookNowButton {
+        padding: 0.6rem;
+        font-size: 14px;
+    }
+
+    .facilityGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .roomsGrid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .roomCard {
+        width: 100%;
+    }
 }

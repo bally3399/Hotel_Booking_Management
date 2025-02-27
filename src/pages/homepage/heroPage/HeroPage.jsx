@@ -12,6 +12,7 @@ import Image8 from "../../../assets/Vector (7).png"
 import room1 from "../../../assets/Rectangle 10.png"
 import room2 from "../../../assets/Rectangle 10 (1).png"
 import room3 from "../../../assets/Rectangle 10 (2).png"
+import {Link} from "react-router-dom";
 
 const facilities = [
     { id: 1, name: "Swimming Pool", image: Image },
@@ -28,19 +29,19 @@ const rooms = [
     {
         id: 1,
         image: room1,
-        availability: "2 Rooms available",
+        availability: "2 rooms available",
         description: "Television set, Extra sheets and Breakfast",
     },
     {
         id: 2,
         image: room2,
-        availability: "4 Rooms available",
+        availability: "4 rooms available",
         description: "Television set, Extra sheets, Breakfast, and fireplace",
     },
     {
         id: 3,
         image: room3,
-        availability: "8 Rooms available",
+        availability: "8 rooms available",
         description: "Television set, Extra sheets, Breakfast, fireplace, Console, and bed rest",
     },
 ];
@@ -94,7 +95,9 @@ const HeroPage = () => {
                     </select>
                     <input type="date" className={styles.inputField}/>
                     <input type="date" className={styles.inputField}/>
-                    <button className={styles.bookNowButton}>Book Now</button>
+                    <Link to={'/rooms'}>
+                        <button className={styles.bookNowButton}>Book Now</button>
+                    </Link>
                 </div>
             </div>
             <section className={styles.facilitiesSection}>

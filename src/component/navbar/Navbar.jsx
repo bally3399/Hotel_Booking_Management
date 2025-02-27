@@ -1,10 +1,19 @@
-import styles from  "./Navbar.module.css"
-import {useState} from "react";
-import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const navLinks = [
+        { path: "/", label: "Home" },
+        { path: "/tour", label: "Explore" },
+        { path: "/rooms", label: "rooms" },
+        { path: "/about", label: "About" },
+        { path: "/contact", label: "Contact" },
+    ];
 
     return (
         <nav className={styles.navbar}>
@@ -15,16 +24,16 @@ const Navbar = () => {
             </div>
 
             <div className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
-                <div>Home</div>
-                <div>Explore</div>
-                <div>Rooms</div>
-                <div>About</div>
-                <div>Contact</div>
+                {navLinks.map(({ path, label }) => (
+                    <div key={path} className={styles.navItem} onClick={() => navigate(path)}>
+                        {label}
+                    </div>
+                ))}
             </div>
 
-            <Link to="/register" className={styles.desktopOnly}>
+            <div className={styles.desktopOnly} onClick={() => navigate("/register")}>
                 <button className={styles.getStarted}>Book now</button>
-            </Link>
+            </div>
         </nav>
     );
 };
