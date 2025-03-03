@@ -4,6 +4,8 @@ import RoomsPage from "../pages/homepage/rooms/Rooms";
 import Register from "../pages/homepage/register/Register";
 import Login from "../pages/homepage/login/Login";
 import TourPage from "../pages/homepage/tour/Tour";
+import CreateHotel from "../pages/homepage/createHotel/CreateHotel";
+import AdminDashboard from "../pages/homepage/adminDashboard/AdminDashboard";
 
 
 export const ROUTES = [
@@ -16,6 +18,7 @@ export const ROUTES = [
         path:"/register",
         element: <Register/>,
     },
+
 
     {
         path:"/login",
@@ -34,5 +37,15 @@ export const ROUTES = [
         path:"/tour",
         element: <TourPage/>,
     },
+    {
+        path:"/create-hotel",
+        element: <CreateHotel/>,
+    },
+
+    {
+        path:"/admin-dashboard",
+        element: <AdminDashboard/>,
+    },
+
 
 ]
