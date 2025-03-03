@@ -19,7 +19,7 @@
 .backButton {
     display: flex;
     align-items: center;
-    color: #6b5b4b;
+    color: #a47a47;
     cursor: pointer;
     background-color: white;
 }
@@ -61,7 +61,7 @@
 }
 
 .formField input:focus {
-    border-color: #6b5b4b !important;
+    border-color: #a47a47 !important;
 }
 
 .inputField {
@@ -73,7 +73,7 @@
 }
 
 .submitButton {
-    background-color: #6b5b4b !important;
+    background-color: #a47a47 !important;
     color: black !important;
     padding: 0.75rem !important;
     border-radius: 9999px !important;

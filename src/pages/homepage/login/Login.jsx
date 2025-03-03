@@ -4,10 +4,11 @@ import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 import styles from "./Login.module.css";
 
 const Login = () => {
-    const [form, setForm] = useState({ email: "", password: "" });
+    const [form, setForm] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -23,21 +24,30 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                "",
+                "http://api.fortunaehotel.com/api/auth/login",
                 form,
                 {
                     headers: { "Content-Type": "application/json" },
                 }
             );
 
-            console.log(response.data.token);
             if (response.status === 200) {
-                toast.success(`Welcome ${form.email}, you have logged in successfully!`, {
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+
+                const decodedToken = jwtDecode(token);
+                const role = decodedToken.roles;
+
+                toast.success(`Welcome ${form.username}, you have logged in successfully!`, {
                     position: "top-right",
                     autoClose: 3000,
                 });
-                localStorage.setItem("token", response.data.token);
-                navigate("/dashboard");
+
+                if (role === "ROLE_ROLE_ADMIN") {
+                    navigate("/admin-dashboard");
+                } else {
+                    navigate("/dashboard");
+                }
             } else {
                 setErrors({ username: "Invalid username or password" });
             }
@@ -61,10 +71,9 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <div className={styles.inputField}>
                             <TextField
-                                label="Email"
-                                name="email"
-                                type="email"
-                                value={form.email}
+                                label="User name"
+                                name="username"
+                                value={form.username}
                                 onChange={handleChange}
                                 fullWidth
                                 className={styles.formField}
@@ -74,7 +83,6 @@ const Login = () => {
                                         "& fieldset": { borderColor: "black" },
                                         "&:hover fieldset": { borderColor: "#a47a47" },
                                         "&.Mui-focused fieldset": { borderColor: "#a47a47" },
-
                                     },
                                     marginBottom: "16px",
                                 }}
@@ -94,7 +102,6 @@ const Login = () => {
                                     "& fieldset": { borderColor: "black" },
                                     "&:hover fieldset": { borderColor: "#a47a47" },
                                     "&.Mui-focused fieldset": { borderColor: "#a47a47" },
-
                                 },
                                 marginBottom: "16px",
                             }}
@@ -108,8 +115,8 @@ const Login = () => {
                                 <p>
                                     Don't have an account? {" "}
                                     <span onClick={() => navigate("/register")} className={styles.loginLink}>
-                                register
-                            </span>
+                                        Register
+                                    </span>
                                 </p>
                             </div>
                         </div>
