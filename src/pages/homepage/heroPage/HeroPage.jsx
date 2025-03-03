@@ -13,6 +13,7 @@ import room1 from "../../../assets/Rectangle 10.png"
 import room2 from "../../../assets/Rectangle 10 (1).png"
 import room3 from "../../../assets/Rectangle 10 (2).png"
 import {Link} from "react-router-dom";
+import Footer from "../../../component/footer";
 
 const facilities = [
     { id: 1, name: "Swimming Pool", image: Image },
@@ -133,6 +134,7 @@ const HeroPage = () => {
                 ))}
             </div>
         </section>
+       <Footer/>
     </main>
     );
 };
