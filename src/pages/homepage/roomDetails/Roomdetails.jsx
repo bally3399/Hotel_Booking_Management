@@ -7,16 +7,12 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./BookRoom.module.css";
 
-const BookRoomPage = () => {
+const RoomDetailsPage = () => {
     const [form, setForm] = useState({
-        userId: "",
-        hotelId: "",
-        roomId: "",
-        startDate: "",
-        endDate: "",
-        isPaid: true,
-        agree: false,
-        role: ""
+        roomType: "SUITE",
+        price : 200.00,
+        available: true,
+        hotelId: 1,
     });
 
     const navigate = useNavigate();
@@ -31,23 +27,28 @@ const BookRoomPage = () => {
         }));
     };
 
+    const token = "85883939738625756";
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         try {
             const payload = {
-                userId: form.userId,
+                roomType: form.roomType,
+                price: form.price,
+                available: form.available,
                 hotelId: form.hotelId,
-                roomId: form.roomId,
-                role: form.role,
-                startDate: new Date(form.startDate).toISOString(),
-                endDate: new Date(form.endDate).toISOString(),
+                
             };
 
-            const response = await axios.post(
-                "http://api.fortunaehotel.com/v1/bookings/book",
+            const response = await axios.put(
+                "http://api.fortunaehotel.com/api/v1/rooms/2",
                 payload,
-                { headers: { "Content-Type": "application/json" } }
+                { headers: { 
+                    "Content-Type": "application/json", 
+                    Authorization: `Bearer ${token}`
+                } 
+              }
             );
 
             if (response.data === "Booked room successfully") {
@@ -69,12 +70,12 @@ const BookRoomPage = () => {
                 <HiArrowLeft className="mr-2" /> Back
             </div>
             <div className={styles.roomCard}>
-                <h2 className={styles.roomTitle}>Book Room</h2>
+                <h2 className={styles.roomTitle}> Room Details </h2>
                 <form onSubmit={handleSubmit}>
                     <TextField
-                        label="User Id"
-                        name="userId"
-                        value={form.userId}
+                        label="Room Type"
+                        name="roomtype"
+                        value={form.roomtype}
                         onChange={handleChange}
                         fullWidth
                         className={styles.formField}
@@ -88,62 +89,45 @@ const BookRoomPage = () => {
                             marginBottom: "16px",
                         }}
                     />
+                    <TextField
+                        label="price"
+                        name="price"
+                        value={form.price}
+                        onChange={handleChange}
+                        fullWidth
+                        className={styles.formField}
+                        sx={{
+                            "& label.Mui-focused": { color: "#a68b5b" },
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": { borderColor: "black" },
+                                "&:hover fieldset": { borderColor: "#a68b5b" },
+                                "&.Mui-focused fieldset": { borderColor: "#a68b5b" },
+                            },
+                            marginBottom: "16px",
+                        }}
+                    />
+                    <TextField
+                        label="available"
+                        name="available"
+                        value={form.available}
+                        onChange={handleChange}
+                        fullWidth
+                        className={styles.formField}
+                        sx={{
+                            "& label.Mui-focused": { color: "#a68b5b" },
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": { borderColor: "black" },
+                                "&:hover fieldset": { borderColor: "#a68b5b" },
+                                "&.Mui-focused fieldset": { borderColor: "#a68b5b" },
+                            },
+                            marginBottom: "16px",
+                        }}
+                    />
+                    
                     <TextField
                         label="Hotel Id"
                         name="hotelId"
-                        value={form.hotelId}
-                        onChange={handleChange}
-                        fullWidth
-                        className={styles.formField}
-                        sx={{
-                            "& label.Mui-focused": { color: "#a68b5b" },
-                            "& .MuiOutlinedInput-root": {
-                                "& fieldset": { borderColor: "black" },
-                                "&:hover fieldset": { borderColor: "#a68b5b" },
-                                "&.Mui-focused fieldset": { borderColor: "#a68b5b" },
-                            },
-                            marginBottom: "16px",
-                        }}
-                    />
-                    <TextField
-                        label="Room Id"
-                        name="roomId"
-                        value={form.roomId}
-                        onChange={handleChange}
-                        fullWidth
-                        className={styles.formField}
-                        sx={{
-                            "& label.Mui-focused": { color: "#a68b5b" },
-                            "& .MuiOutlinedInput-root": {
-                                "& fieldset": { borderColor: "black" },
-                                "&:hover fieldset": { borderColor: "#a68b5b" },
-                                "&.Mui-focused fieldset": { borderColor: "#a68b5b" },
-                            },
-                            marginBottom: "16px",
-                        }}
-                    />
-                    <TextField
-                        label="Check In"
-                        name="startDate"
-                        type="date"
-                        value={form.startDate}
-                        onChange={handleChange}
-                        fullWidth
-                        className={styles.formField}
-                        sx={{
-                            "& label.Mui-focused": { color: "#a68b5b" },
-                            "& .MuiOutlinedInput-root": {
-                                "& fieldset": { borderColor: "black" },
-                                "&:hover fieldset": { borderColor: "#a68b5b" },
-                                "&.Mui-focused fieldset": { borderColor: "#a68b5b" },
-                            },
-                            marginBottom: "16px",
-                        }}
-                    />
-                    <TextField
-                        label="Check Out"
-                        name="endDate"
-                        type="date"
+                        type="number"
                         value={form.endDate}
                         onChange={handleChange}
                         fullWidth
@@ -165,7 +149,7 @@ const BookRoomPage = () => {
                         disabled={isLoading}
                         className={styles.submitButton}
                     >
-                        {isLoading ? "Booking ..." : "Book"}
+                        {isLoading ? "Editing ..." : "Updated"}
                     </Button>
                 </form>
                 <ToastContainer position="top-right" autoClose={3000} />
@@ -174,4 +158,4 @@ const BookRoomPage = () => {
     );
 };
 
-export default BookRoomPage;
+export default RoomDetailsPage;
