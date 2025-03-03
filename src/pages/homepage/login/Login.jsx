@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
-    const [form, setForm] = useState({ email: "", password: "" });
+    const [form, setForm] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                "",
+                "http://api.fortunaehotel.com/api/auth/login",
                 form,
                 {
                     headers: { "Content-Type": "application/json" },
@@ -61,10 +61,9 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <div className={styles.inputField}>
                             <TextField
-                                label="Email"
-                                name="email"
-                                type="email"
-                                value={form.email}
+                                label="User name"
+                                name="username"
+                                value={form.username}
                                 onChange={handleChange}
                                 fullWidth
                                 className={styles.formField}
