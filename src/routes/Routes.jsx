@@ -53,8 +53,8 @@ export const ROUTES = [
     {
        path: "/add-room",
          element: <AddRoom/>,
-    }
-
+    },
+    {
         path:"/about",
         element: <About/>,
     },
