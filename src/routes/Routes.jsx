@@ -8,6 +8,8 @@ import CreateHotel from "../pages/homepage/createHotel/CreateHotel";
 import AdminDashboard from "../pages/homepage/adminDashboard/AdminDashboard";
 import AddRoom from "../pages/homepage/AddRoom/Addroom";
 import About from "../pages/homepage/about/About";
+import RoomDetailsPage from "../pages/homepage/roomDetails/RoomDetails";
+import ListOfHotelPage from "../pages/homepage/listOfHotel/ListOfHotel";
 
 
 
@@ -53,10 +55,19 @@ export const ROUTES = [
     {
        path: "/add-room",
          element: <AddRoom/>,
-    }
-
+    },
+    {
         path:"/about",
         element: <About/>,
+    },
+    {
+        path:"/roomDetails",
+        element: <RoomDetailsPage/>,
+    },
+
+    {
+        path:"/list",
+        element: <ListOfHotelPage/>,
     },
 
 

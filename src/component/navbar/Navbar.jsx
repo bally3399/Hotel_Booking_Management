@@ -10,7 +10,7 @@ const Navbar = () => {
     const navLinks = [
         { path: "/", label: "Home" },
         { path: "/tour", label: "Explore" },
-        { path: "/rooms", label: "rooms" },
+        { path: "/rooms", label: "Rooms" },
         { path: "/about", label: "About" },
         { path: "/contact", label: "Contact" },
     ];

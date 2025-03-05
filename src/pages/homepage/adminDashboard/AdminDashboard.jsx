@@ -12,7 +12,8 @@ const Dashboard = () => {
             <Navbar/>
             <div className={styles.dashboard}>
                 <button onClick={() => navigate("/create-hotel")} className={styles.actionButton}>Create Hotel</button>
-                <button onClick={() => navigate("/update")} className={styles.actionButton}>Update hotel details</button>
+                <button onClick={() => navigate("/list")} className={styles.actionButton}>List Of Hotel</button>
+                <button onClick={() => navigate("/roomDetails")} className={styles.actionButton}>Get Hotel Details</button>
                 <button onClick={() => navigate("/add-room")} className={styles.actionButton}>Add Room To Hotel</button>
                 <button onClick={() => navigate("/delete")} className={styles.actionButton}>Delete Hotel</button>
                 <button onClick={() => navigate("/view")} className={styles.actionButton}>Get Total Hotel In State</button>
