@@ -1,5 +1,6 @@
 import Navbar from "../../../component/navbar/Navbar";
 import styles from "./About.module.css";
+import Footer from "../../../component/footer";
 
 const About = () =>{
     return(
@@ -12,6 +13,7 @@ const About = () =>{
                     perfect luxury bedroom design.
                 </p>
             </div>
+            <Footer/>
         </main>
     )
 }

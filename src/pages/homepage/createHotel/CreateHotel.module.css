@@ -65,3 +65,13 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+.backButton {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    color: #a68b5b;
+    cursor: pointer;
+}
+

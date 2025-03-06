@@ -55,7 +55,7 @@ const GetStarted = () => {
             };
 
 
-            const response = await axios.post("", payload, {
+            const response = await axios.post("http://hotel-api.fortunaelibrary-api.com/api/auth/user/register", payload, {
                 headers: { "Content-Type": "application/json" },
             });
             console.log(response);
@@ -136,15 +136,6 @@ const GetStarted = () => {
                                      marginBottom: "16px",
                                  }}
                     >
-                        <InputLabel>Role</InputLabel>
-                        <Select
-                            name="role"
-                            value={form.role}
-                            onChange={(e) => setForm((prev) => ({ ...prev, role: e.target.value }))}
-                        >
-                            <MenuItem value="Admin">Admin</MenuItem>
-                            <MenuItem value="Member">User</MenuItem>
-                        </Select>
                     </FormControl>
                     <FormControlLabel
                         control={

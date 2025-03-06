@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./BookRoom.module.css";
+import styles from "./RoomDetails.module.css";
 
 const RoomDetailsPage = () => {
     const [form, setForm] = useState({
@@ -149,7 +149,7 @@ const RoomDetailsPage = () => {
                         disabled={isLoading}
                         className={styles.submitButton}
                     >
-                        {isLoading ? "Editing ..." : "Updated"}
+                        {isLoading ? "Booking ..." : "Book Now"}
                     </Button>
                 </form>
                 <ToastContainer position="top-right" autoClose={3000} />

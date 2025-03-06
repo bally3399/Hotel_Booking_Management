@@ -4,6 +4,7 @@ import { TextField, Button } from "@mui/material";
 import styles from "./CreateHotel.module.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import {HiArrowLeft} from "react-icons/hi";
 
 const API_URL = "http://hotel-api.fortunaelibrary-api.com/api";
 
@@ -95,16 +96,20 @@ const CreateHotel = () => {
                 picture: [],
             });
 
-            navigate("/all-hotel");
+            navigate("/rooms");
         } catch (error) {
             setMessage("Failed to add hotel. Try again.");
         }
     };
 
     return (
-        <div className={styles.createHotelContainer}>
-            <h2>Add a new Hotel</h2>
-            {message && <p className={styles.message}>{message}</p>}
+        <main>
+            <div className={styles.backButton} onClick={() => navigate("/admin-dashboard")}>
+                <HiArrowLeft className="mr-2"/> Back
+            </div>
+    <div className={styles.createHotelContainer}>
+        <h2>Add a new Hotel</h2>
+        {message && <p className={styles.message}>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Name"
@@ -180,6 +185,7 @@ const CreateHotel = () => {
                 </div>
             </form>
         </div>
+        </main>
     );
 };
 
