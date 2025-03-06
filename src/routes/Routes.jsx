@@ -7,6 +7,10 @@ import TourPage from "../pages/homepage/tour/Tour";
 import CreateHotel from "../pages/homepage/createHotel/CreateHotel";
 import AdminDashboard from "../pages/homepage/adminDashboard/AdminDashboard";
 import AddRoom from "../pages/homepage/AddRoom/Addroom";
+import EditRoom from "../pages/homepage/editRoom/EditRoom";
+import UserDashboard from "../pages/homepage/userDashboard/userDashboard";
+
+
 
 export const ROUTES = [
     {
@@ -48,8 +52,17 @@ export const ROUTES = [
     },
 
     {
+        path: "/user-dashboard",
+        element: <UserDashboard/>,
+    },
+
+    {
        path: "/add-room",
          element: <AddRoom/>,
+    },
+    {
+        path: "/edit-room",
+        element: <EditRoom/>,
     }
 
 
