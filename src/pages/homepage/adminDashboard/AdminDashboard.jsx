@@ -13,14 +13,16 @@ const Dashboard = () => {
     const [type, setType] = useState("");
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
-   const [filteredRooms, setFilteredRooms] = useState([]);
+    const [filteredRooms, setFilteredRooms] = useState([]);
+    const [availableOnly, setAvailableOnly] = useState(false);
+   const [state, setState] = useState("new York");
 
-
-    const token = "2345678098";
+    const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbl9zdGV2ZSIsInJvbGVzIjpbIlJPTEVfUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDEwMjIwMjIsImV4cCI6MTc0MTAzOTg4OX0.tU44OuaHMwFRGw71B1j8NuUZhj6u8CxR-o2vzznK0enUp8PALJfOeovosTWnoNHDFKJGPmXdabES2KK1iraJoQ";
     useEffect(() => {
+        const fetchRooms = async () => {
         try{
             setLoading(true);
-            const response = axios.get("http://api.fortunaehotel.com/api/v1/rooms/hotel/1", null, {
+            const response = await axios.get("http://api.fortunaehotel.com/api/v1/rooms/hotel/1", null, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -32,9 +34,28 @@ console.error(error);
         }finally{
             setLoading(false);
         }
-    })
+    }
+    fetchRooms();
+}, []);
 
 
+
+const toggleRoomStatus = async (roomId, isActive) => {
+    try {
+        setLoading(true);
+        await axios.put(`http://api.fortunaehotel.com/api/v1/rooms/hotel/1/${isActive ? "deactivate" : "activate"}/${roomId}`, null, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        alert(`Room ${isActive ? "deactivated" : "activated"} successfully!`);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleUpdate = () => {
       navigate("/edit-room");
@@ -50,7 +71,7 @@ console.error(error);
                     Authorization: `Bearer ${token}`,
                 }
             })
-            console.log("Deleted");
+            console.log("Deleted", response);
             alert("Room deleted successfully");
             navigate("/rooms");
         }catch(error){
@@ -58,47 +79,7 @@ console.error(error);
         }
     }
 
-    const handleCheckAvailable = () => {
-        try{
-            setLoading(true);
-            const response = axios.get("http://api.fortunaehotel.com/api/v1/rooms/hotel/1/available", null, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                }
-            })
-        }catch(error){
-            console.error(error);
-    }
-}
 
-const DeactivateRoom = () => {
-    try{
-        setLoading(true);
-        const response = axios.put("http://api.fortunaehotel.com/api/v1/rooms/hotel/1/deactivate/1", null, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            }
-        })
-    }catch(error){
-        console.error(error);
-    }
-}
-
-const activateRoom = () => {
-    try{
-        setLoading(true);
-        const response = axios.put("http://api.fortunaehotel.com/api/v1/rooms/hotel/1/activate/1", null, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            }
-        })
-    }catch(error){
-        console.error(error);
-    }
-}
 
 const handleFilterByType = () => {
     try{
@@ -133,7 +114,7 @@ const handleFilterByPriceRange = () => {
 const handleFilterByState = () => {
     try{
         setLoading(true);
-        const response = axios.get(`http://api.fortunaehotel.com/api/v1/rooms/filter/state?state={}`, null, {
+        const response = axios.get(`http://api.fortunaehotel.com/api/v1/rooms/filter/state?state=${state}`, null, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -176,27 +157,71 @@ const getAvailableRooms = () => {
                 <button onClick={() => navigate("/ViewHistory")} className={styles.actionButton}>Delete Room From Hotel</button>
             </div>
 
-            <div className="filter">
-                Filter by type, price range, Price & State, available rooms
+            <div className={styles.filterContainer}>
+                <h3>Filter Rooms</h3>
+                <input
+                    type="text"
+                    placeholder="Type (e.g. Suite, Deluxe)"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                />
+<button onClick={handleFilterByType}>Apply Filters</button>
+
+<div>
+<input
+                    type="text"
+                    placeholder="Type (e.g. Suite, Deluxe)"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                />
+                <button onClick={handleFilterByState}>Apply Filter</button>
+</div>
+
+<div>
+<button onClick={getAvailableRooms}>Get All Available Rooms</button>
+</div>
+
+<div>
+                <input
+                    type="number"
+                    placeholder="Min Price"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                />
+                <input
+                    type="number"
+                    placeholder="Max Price"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                />
+                <button onClick={handleFilterByPriceRange}>Apply Filters</button>
+                </div>
             </div>
 
 
 
-
-
-            <div>
-                {rooms.map(room => {
-                    <li key={room.id}>
-                      <img src={room.img} alt="image" />
-                      <p onClick={handleUpdate}>Edit</p>
-                      <p onClick={handleDelete}>Delete</p>
-                      <p>Activate</p>
-                    </li>
-                })}
+            <div className={styles.roomList}>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    (filteredRooms.length > 0 ? filteredRooms : rooms).map((room) => (
+                        <div key={room.id} className={styles.roomCard}>
+                            <img src={room.img} alt={room.name} className={styles.roomImage} />
+                            <p>{room.name}</p>
+                            <p>${room.price}</p>
+                            <button onClick={() => navigate(`/edit-room`)}>Edit</button>
+                            <button onClick={(e) => handleDelete(e)}>Delete</button>
+                            <button onClick={() => toggleRoomStatus(room.id, room.isActive)}>
+                                {room.isActive ? "Deactivate" : "Activate"}
+                            </button>
+                        </div>
+                    ))
+                )}
             </div>
-            <Footer/>
+            <Footer />
         </main>
     );
 };
 
 export default Dashboard;
+

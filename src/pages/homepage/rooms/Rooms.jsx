@@ -75,18 +75,18 @@ const RoomsPage = () => {
 
     const token = '';
 
-    useEffect(() => {
-           const response = axios.get("http://api.fortunaehotel.com/api/v1/rooms/hotel/1", {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-     })
+    // useEffect(() => {
+    //        const response = axios.get("http://api.fortunaehotel.com/api/v1/rooms/hotel/1", {
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    //  })
     
-     console.log(response);
-     console.log(token);
+    //  console.log(response);
+    //  console.log(token);
 
-    });
+    // });
     
     const roomsRef = useRef(null);
 
