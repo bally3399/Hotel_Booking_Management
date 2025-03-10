@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../../../component/navbar/Navbar";
 import Footer from "../../../component/footer";
 import styles from "./EditBooking.module.css";
+import axios from "axios";
+
 
 const EditBooking = () => {
   const navigate = useNavigate();
@@ -24,11 +26,23 @@ const EditBooking = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Booking Updated Successfully!");
-    console.log("Updated Booking Data:", bookingData);
-    navigate("/user-dashboard");
+    
+    try{
+        const response = await axios.post("http://hotel-api.fortunaelibrary-api.comapi/v1/bookings/book", bookingData)
+        
+        if(response.status == 200){
+            console.log("Success");
+        }
+    }catch(error){
+        console.error(error);
+    }finally{
+
+        alert("Booking Updated Successfully!");
+        console.log("Updated Booking Data:", bookingData);
+        navigate("/user-dashboard");
+    }
   };
 
   return (

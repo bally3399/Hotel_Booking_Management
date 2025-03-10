@@ -20,6 +20,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       // Dummy booking details
+    //Api   http://hotel-api.fortunaelibrary-api.comapi/v1/bookings
       const dummyBookings = [
         { id: 1, name: "John Doe", room: "Deluxe Suite", date: "2025-02-20", status: "Confirmed" },
         { id: 2, name: "Jane Smith", room: "Standard Room", date: "2025-02-21", status: "Pending" },
@@ -41,6 +42,9 @@ const Dashboard = () => {
 
   const handleCancelBooking = (e, bookingId) => {
     e.preventDefault();
+    const response = axios.put(`http://hotel-api.fortunaelibrary-api.comapi/v1/bookings/cancel/${bookingId}?userId=${userId}`)
+    
+    alert(response);
     alert(`Booking with ID ${bookingId} cancelled!`);
   };
 

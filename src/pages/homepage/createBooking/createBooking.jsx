@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../../component/navbar/Navbar";
 import Footer from "../../../component/footer";
 import styles from "./CreateBooking.module.css";
+import axios from "axios";
+
 
 const CreateBooking = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({
-    name: "",
-    room: "",
-    date: "",
-    status: "Pending",
+    "userId": "12345",
+    "roomId": 1001,
+    "hotelId": 5001,
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-05",
+    "isPaid": true
   });
 
   const handleChange = (e) => {
@@ -21,8 +25,17 @@ const CreateBooking = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try{
+        const response = await axios.post("http://hotel-api.fortunaelibrary-api.comapi/v1/bookings/book", bookingData)
+        
+        if(response.status == 200){
+            console.log("Success");
+        }
+    }catch(error){
+        console.error(error);
+    }
     alert("Booking Created Successfully!");
     console.log("Booking Data:", bookingData);
     navigate("/user-dashboard");
