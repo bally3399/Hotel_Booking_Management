@@ -149,7 +149,7 @@ const RoomDetailsPage = () => {
                         disabled={isLoading}
                         className={styles.submitButton}
                     >
-                        {isLoading ? "Booking ..." : "Book Now"}
+                        {isLoading ? "Editing ..." : "Edit Now"}
                     </Button>
                 </form>
                 <ToastContainer position="top-right" autoClose={3000} />
