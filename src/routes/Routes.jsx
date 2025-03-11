@@ -12,6 +12,9 @@ import UserDashboard from "../pages/homepage/userDashboard/userDashboard";
 import About from "../pages/homepage/about/About";
 import RoomDetailsPage from "../pages/homepage/roomDetails/RoomDetails";
 import ListOfHotelPage from "../pages/homepage/listOfHotel/ListOfHotel";
+import CreateBooking from "../pages/homepage/createBooking/createBooking";
+import EditBooking from "../pages/homepage/editBooking/editBooking";
+import ContactPage from "../pages/homepage/contact/Contact";
 
 
 
@@ -81,6 +84,18 @@ export const ROUTES = [
         path:"/list",
         element: <ListOfHotelPage/>,
     },
+    {
+        path: "/create-booking",
+        element: <CreateBooking />
+    },
+    {
+        path: "/edit-booking",
+        element: <EditBooking />
+    },
+    {
+        path: "/contact",
+        element: <ContactPage />
+    }
 
 
 ]

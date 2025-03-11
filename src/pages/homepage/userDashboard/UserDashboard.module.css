@@ -75,7 +75,7 @@
   }
   
   .actionButton {
-    background-color: #007bff;
+    background-color: #a68b5b;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
@@ -86,7 +86,7 @@
   }
   
   .actionButton:hover {
-    background-color: #0056b3;
+    background-color: #8c6239;
   }
   
   .bookingList {
@@ -121,7 +121,7 @@
   }
   
   .editButton {
-    background-color: #28a745;
+    background-color: #764412;
     color: white;
     padding: 0.3rem 0.8rem;
     border: none;
@@ -130,7 +130,7 @@
   }
   
   .cancelButton {
-    background-color: #dc3545;
+    background-color: #4e361e;
     color: white;
     padding: 0.3rem 0.8rem;
     border: none;
@@ -139,9 +139,9 @@
   }
   
   .editButton:hover {
-    background-color: #218838;
+    background-color: #8c6239;
   }
   
   .cancelButton:hover {
-    background-color: #c82333;
+    background-color: #8c6239;
   }
