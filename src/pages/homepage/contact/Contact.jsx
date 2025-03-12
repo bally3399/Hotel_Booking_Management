@@ -1,14 +1,14 @@
 import Footer from "../../../component/footer"
 import Navbar from "../../../component/navbar/Navbar"
-import styles from "./Tour.module.css"
+import styles from "./contact.module.css"
 
 
-const TourPage =()=>{
+const ContactPage =()=>{
     return(
         <main>
             <Navbar/>
             <div className={styles.aboutContainer}>
-                <h1 className={styles.title}>Tour guide</h1>
+                <h1 className={styles.title}>Contact Page</h1>
                 <p className={styles.subTitle}>THe Pleasant experience of good pleasure
                 </p>
             </div>
@@ -16,4 +16,4 @@ const TourPage =()=>{
         </main>
     )
 }
-export default TourPage
+export default ContactPage

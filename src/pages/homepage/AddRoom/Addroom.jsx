@@ -59,7 +59,7 @@ const AddRoom = () => {
                 <TextField label="Price" name="price" type="number" value={roomDetails.price} onChange={handleChange} fullWidth required margin="normal" />
                 <TextField label="Available" name="available" value={roomDetails.available} onChange={handleChange} fullWidth required margin="normal" />
                 <Box mt={2}>
-                    <Button  type="submit" variant="contained" className={styles.SubmitBtn} fullWidth disabled={isLoading}>
+                    <Button style={{ background: "#8c6239", color: "white"}}  type="submit"  fullWidth disabled={isLoading}>
                         {isLoading ? "Adding Room..." : "Add Room"}
                     </Button>
                 </Box>

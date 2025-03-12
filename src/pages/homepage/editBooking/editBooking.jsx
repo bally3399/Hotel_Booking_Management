@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../../../component/navbar/Navbar";
 import Footer from "../../../component/footer";
-import styles from "./EditBooking.module.css";
+import styles from "./editBooking.module.css";
 import axios from "axios";
 
 
