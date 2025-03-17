@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "../register/Register.module.css"
+import styles from "../register/Register.module.css";
 
 
 const GetStarted = () => {
@@ -20,6 +20,8 @@ const GetStarted = () => {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [role, setRole] = useState("Admin");
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -41,7 +43,9 @@ const GetStarted = () => {
         return Object.keys(formErrors).length === 0;
     };
 
-    const handleSubmit = async (e) => {
+
+
+    const handleAdminSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
         setIsLoading(true);
@@ -55,15 +59,18 @@ const GetStarted = () => {
             };
 
 
-            const response = await axios.post("http://hotel-api.fortunaelibrary-api.com/api/auth/user/register", payload, {
+            const response = await axios.post("https://hotel-booking-backend-2sa9.onrender.com/api/auth/admin/register", payload, {
                 headers: { "Content-Type": "application/json" },
             });
+
             console.log(response);
+            
             if (response.data === "User registered successfully") {
                 toast.success(`Welcome ${form.username}, you have signed up successfully!`);
                 setTimeout(() => navigate("/login"), 3000);
-            } else {
-                toast.error("Sign up failed. Please try again.");
+            } else if(response.status == 200) {
+                toast.success("Admin created subccc");
+                navigate("/login");
             }
         } catch (error) {
             toast.error("Sign up failed. Please try again.");
@@ -72,6 +79,41 @@ const GetStarted = () => {
         }
     };
 
+    const handleUserSubmit = async (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
+        setIsLoading(true);
+
+        try {
+            const payload = {
+                username: form.username,
+                email: form.email,
+                password: form.password,
+                role: form.role,
+            };
+
+
+            const response = await axios.post("https://hotel-booking-backend-2sa9.onrender.com/api/auth/user/register", payload, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            console.log(response);
+            
+            if (response.data === "User registered successfully") {
+                toast.success(`Welcome ${form.username}, you have signed up successfully!`);
+                setTimeout(() => navigate("/login"), 3000);
+            } else if(response.status === 200) {
+                toast.success("User created successfully!");
+                navigate("/login");
+            }
+        } catch (error) {
+            toast.error("Sign up failed. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
     return (
         <div className={styles.regContainer}>
             <div className={styles.backButton} onClick={() => navigate("/")}>
@@ -79,7 +121,9 @@ const GetStarted = () => {
             </div>
             <div className={styles.regCard}>
                 <h2 className={styles.regTitle}>Sign up</h2>
-                <form onSubmit={handleSubmit}>
+                <div>Choose Role: <button onClick={() => setRole("Admin")}>Admin</button> or <button onClick={() => setRole("User")}>User</button></div>
+
+                <form onSubmit={role === "Admin" ? handleAdminSubmit : handleUserSubmit}>
                     <TextField label="Username" name="username" value={form.username} onChange={handleChange} fullWidth
                                className={styles.formField} sx={{
                         "& label.Mui-focused": {color: "#a47a47"},

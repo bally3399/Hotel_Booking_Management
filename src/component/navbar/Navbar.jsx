@@ -32,7 +32,7 @@ const Navbar = () => {
             </div>
 
             <div className={styles.desktopOnly} onClick={() => navigate("/register")}>
-                <button className={styles.getStarted}>Book now</button>
+                <button onClick={() => navigate("/create-booking")} className={styles.getStarted}>Book now</button>
             </div>
         </nav>
     );
