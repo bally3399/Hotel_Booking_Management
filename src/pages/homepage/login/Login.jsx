@@ -13,6 +13,9 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -24,7 +27,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                "http://api.fortunaehotel.com/api/auth/login",
+                "https://hotel-booking-backend-2sa9.onrender.com/api/auth/login",
                 form,
                 {
                     headers: { "Content-Type": "application/json" },
@@ -43,10 +46,10 @@ const Login = () => {
                     autoClose: 3000,
                 });
 
-                if (role === "ROLE_ROLE_ADMIN") {
+                if (role) {
                     navigate("/admin-dashboard");
                 } else {
-                    navigate("/dashboard");
+                    navigate("/user-dashboard");
                 }
             } else {
                 setErrors({ username: "Invalid username or password" });
@@ -57,6 +60,8 @@ const Login = () => {
             setIsLoading(false);
         }
     };
+
+    
 
     return (
         <main className={styles.container}>
