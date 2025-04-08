@@ -5,7 +5,6 @@ import Scroll from "../../../assets/scroll down.png";
 import Image from "../../../assets/rooms.png";
 import { FaShower, FaTv, FaWifi } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 
 const rooms = [
