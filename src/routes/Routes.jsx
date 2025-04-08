@@ -12,6 +12,7 @@ import UserDashboard from "../pages/homepage/userDashboard/userDashboard";
 import About from "../pages/homepage/about/About";
 import RoomDetailsPage from "../pages/homepage/roomDetails/RoomDetails";
 import ListOfHotelPage from "../pages/homepage/listOfHotel/ListOfHotel";
+import RegisterAdmin from "../pages/homepage/registerAdmin/RegisterAdmin";
 
 
 
@@ -27,6 +28,10 @@ export const ROUTES = [
         element: <Register/>,
     },
 
+    {
+        path: "/admin/register",
+        element: <RegisterAdmin/>
+    },
 
     {
         path:"/login",

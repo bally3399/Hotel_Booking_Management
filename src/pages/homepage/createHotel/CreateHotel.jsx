@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import {HiArrowLeft} from "react-icons/hi";
 
-const API_URL = "http://hotel-api.fortunaelibrary-api.com/api";
+const API_URL = "https://hotel-booking-management-backend.onrender.com";
 
 const CreateHotel = () => {
     const [roomData, setRoomData] = useState({
@@ -74,7 +74,7 @@ const CreateHotel = () => {
 
         try {
             const response = await axios.post(
-                `${API_URL}/v1/hotel/create`,
+                `${API_URL}api/v1/admin/hotels`,
                 formData,
                 {
                     headers: {
@@ -92,7 +92,7 @@ const CreateHotel = () => {
                 state: "",
                 location: "",
                 description: "",
-                amenities: "",
+                amenities: [],
                 picture: [],
             });
 

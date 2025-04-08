@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "../register/Register.module.css"
 
 
-const GetStarted = () => {
+const RegisterAdmin = () => {
     const [form, setForm] = useState({
         username: "",
         email: "",
@@ -46,14 +46,14 @@ const GetStarted = () => {
         if (!validateForm()) return;
         setIsLoading(true);
 
-        const endpoint = "https://hotel-booking-management-backend.onrender.com/api/v1/users/register";
+        const endpoint = "https://hotel-booking-management-backend.onrender.com/api/v1/admin/register";
 
         try {
             const payload = {
                 username: form.username,
                 email: form.email,
                 password: form.password,
-                role: "USER",
+                role: "ADMIN",
             };
 
 
@@ -163,4 +163,4 @@ const GetStarted = () => {
     );
 };
 
-export default GetStarted;
+export default RegisterAdmin;

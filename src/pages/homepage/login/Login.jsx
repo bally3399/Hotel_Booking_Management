@@ -8,7 +8,7 @@ import {jwtDecode} from "jwt-decode";
 import styles from "./Login.module.css";
 
 const Login = () => {
-    const [form, setForm] = useState({ username: "", password: "" });
+    const [form, setForm] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                "http://api.fortunaehotel.com/api/auth/login",
+                "https://hotel-booking-management-backend.onrender.com/api/v1/auth",
                 form,
                 {
                     headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ const Login = () => {
                 const decodedToken = jwtDecode(token);
                 const role = decodedToken.roles;
 
-                toast.success(`Welcome ${form.username}, you have logged in successfully!`, {
+                toast.success(`Welcome ${form.email}, you have logged in successfully!`, {
                     position: "top-right",
                     autoClose: 3000,
                 });
@@ -49,7 +49,7 @@ const Login = () => {
                     navigate("/dashboard");
                 }
             } else {
-                setErrors({ username: "Invalid username or password" });
+                setErrors({ email: "Invalid username or password" });
             }
         } catch (error) {
             toast.error("Login failed. Please try again.");
@@ -71,9 +71,9 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <div className={styles.inputField}>
                             <TextField
-                                label="User name"
-                                name="username"
-                                value={form.username}
+                                label="Email"
+                                name="email"
+                                value={form.email}
                                 onChange={handleChange}
                                 fullWidth
                                 className={styles.formField}
