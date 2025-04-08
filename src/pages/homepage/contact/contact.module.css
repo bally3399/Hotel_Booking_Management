@@ -1,4 +1,4 @@
-.tourContainer {
+.contactContainer {
     font-family: 'Georgia', serif;
     background-color: #f4f4f4;
     color: #333;
@@ -11,7 +11,7 @@
 
 .heroImage {
     width: 100%;
-    height: 70vh;
+    height: 60vh;
     object-fit: cover;
     filter: brightness(60%);
 }
@@ -37,7 +37,7 @@
     font-size: 1.2rem;
 }
 
-.tourSection {
+.contactSection {
     margin: 2rem auto;
     padding: 2rem;
     max-width: 800px;
@@ -51,44 +51,37 @@
     margin: 1rem auto;
 }
 
-.tourImage {
+.contactImage {
     width: 100%;
     max-width: 600px;
     border-radius: 8px;
     margin-bottom: 1rem;
 }
 
-.tourTitle,
-.experienceTitle,
-.bookingTitle {
+.contactTitle,
+.phoneTitle,
+.emailTitle,
+.visitTitle {
     font-size: 1.75rem;
     margin: 1rem 0;
     color: #555;
 }
 
-.tourDescription {
+.contactDescription,
+.phoneDescription,
+.emailDescription,
+.visitDescription {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
     color: #666;
 }
 
-.experienceList {
-    list-style-type: none;
-    padding: 0;
-    margin: 1rem 0;
-}
-
-.experienceList li {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-}
-
-.bookingDescription a {
+.contactDescription a {
     color: #0077b6;
     text-decoration: underline;
 }
 
-.bookingDescription a:hover {
+.contactDescription a:hover {
     color: #005f8c;
 }

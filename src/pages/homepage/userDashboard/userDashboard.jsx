@@ -4,17 +4,18 @@ import Footer from "../../../component/footer";
 import styles from "./UserDashboard.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {jwtDecode }from "jwt-decode";
+//import {jwtDecode }from "jwt-decode";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [bookings, setBookings] = useState([]);
+const userId = 1;
 
   // Dummy JWT token and decoding
-  const token = "2345678098";
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.userId;
+//   const token = "2345678098";
+//   const decodedToken = jwtDecode(token);
+//   const userId = decodedToken.userId;
 
   useEffect(() => {
     try {

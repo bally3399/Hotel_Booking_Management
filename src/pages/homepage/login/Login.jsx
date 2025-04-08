@@ -13,6 +13,9 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -43,10 +46,10 @@ const Login = () => {
                     autoClose: 3000,
                 });
 
-                if (role === "ROLE_ROLE_ADMIN") {
+                if (role) {
                     navigate("/admin-dashboard");
                 } else {
-                    navigate("/dashboard");
+                    navigate("/user-dashboard");
                 }
             } else {
                 setErrors({ email: "Invalid username or password" });
@@ -57,6 +60,8 @@ const Login = () => {
             setIsLoading(false);
         }
     };
+
+    
 
     return (
         <main className={styles.container}>

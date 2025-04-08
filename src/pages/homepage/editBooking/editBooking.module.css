@@ -23,7 +23,7 @@ h2 {
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 500px;
 }
 
 label {
@@ -40,11 +40,11 @@ input {
 }
 
 input:focus {
-  border-color: #007bff;
+  border-color: #8c6239;
 }
 
 .submitButton {
-  background-color: #007bff;
+  background-color: #8c6239;
   color: white;
   padding: 0.7rem;
   border: none;
@@ -55,5 +55,5 @@ input:focus {
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+  background-color: #8c6239;
 }
